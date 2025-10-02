@@ -75,6 +75,9 @@
       overflow: hidden;
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
       animation: headerGlow 3s ease-in-out infinite alternate;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
     @keyframes headerGlow {
@@ -96,6 +99,76 @@
     @keyframes shine {
       0% { left: -100%; }
       100% { left: 100%; }
+    }
+    
+    /* Dropdown menu styles */
+    .dropdown-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-button {
+      background: rgba(34, 34, 51, 0.8);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .dropdown-button:hover {
+      background: rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: rgba(17, 17, 34, 0.95);
+      min-width: 200px;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      overflow: hidden;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+    
+    .dropdown-content.show {
+      display: block;
+    }
+    
+    .dropdown-content a {
+      color: #fff;
+      padding: 15px 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    }
+    
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+    
+    .dropdown-content a:hover {
+      background: rgba(0, 255, 255, 0.2);
+      padding-left: 25px;
+    }
+    
+    .dropdown-content a.active {
+      background: #0ff;
+      color: #000;
+      font-weight: bold;
     }
     
     /* Marquee styles */
@@ -130,103 +203,6 @@
     .container {
       display: flex;
       min-height: calc(100vh - 140px);
-    }
-    
-    /* Sidebar styles */
-    .sidebar {
-      width: 250px;
-      background: rgba(17, 17, 34, 0.9);
-      min-height: 100%;
-      padding: 25px 15px;
-      box-shadow: 2px 0 15px rgba(0, 255, 255, 0.2);
-      position: relative;
-      z-index: 10;
-      transition: all 0.3s ease;
-    }
-    
-    .sidebar:hover {
-      box-shadow: 2px 0 25px rgba(0, 255, 255, 0.4);
-    }
-    
-    .logo {
-      text-align: center;
-      margin-bottom: 30px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
-    }
-    
-    .logo h2 {
-      font-size: 24px;
-      color: #0ff;
-      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-      letter-spacing: 3px;
-      margin-bottom: 5px;
-    }
-    
-    .logo p {
-      font-size: 10px;
-      color: rgba(255, 255, 255, 0.7);
-      letter-spacing: 1px;
-    }
-    
-    .sidebar-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    
-    .sidebar button {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      padding: 15px;
-      margin: 5px 0;
-      background: rgba(34, 34, 51, 0.8);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-align: left;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      font-size: 13px;
-      letter-spacing: 1px;
-    }
-    
-    .sidebar button i {
-      margin-right: 10px;
-      font-size: 16px;
-      width: 20px;
-      text-align: center;
-    }
-    
-    .sidebar button:hover {
-      background: rgba(0, 255, 255, 0.2);
-      transform: translateX(5px);
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-    }
-    
-    .sidebar button.active {
-      background: #0ff;
-      color: #000;
-      font-weight: bold;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
-    }
-    
-    .sidebar button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
-    }
-    
-    .sidebar button:hover::before {
-      left: 100%;
     }
     
     /* Content styles */
@@ -267,10 +243,20 @@
     .section h2::after {
       content: '';
       position: absolute;
-      bottom: 0ht: 1.6;
+      bottom: 0;
+      left: 0;
+      width: 100px;
+      height: 3px;
+      background: #0ff;
+      box-shadow: 0 0 10px #0ff;
+    }
+    
+    .section p {
+      line-height: 1.6;
       color: rgba(255, 255, 255, 0.9);
       font-size: 15px;
       max-width: 800px;
+      margin-bottom: 20px;
     }
     
     ul {
@@ -469,26 +455,24 @@
     
     /* Responsive design */
     @media (max-width: 768px) {
-      .container {
+      header {
         flex-direction: column;
+        gap: 15px;
       }
       
-      .sidebar {
+      .dropdown-container {
         width: 100%;
-        min-height: auto;
       }
       
-      .sidebar-buttons {
-        flex-direction: row;
-        flex-wrap: wrap;
+      .dropdown-button {
+        width: 100%;
         justify-content: center;
       }
       
-      .sidebar button {
-        flex: 1;
-        min-width: 150px;
-        justify-content: center;
-        text-align: center;
+      .dropdown-content {
+        width: 100%;
+        right: auto;
+        left: 0;
       }
       
       .content {
@@ -542,35 +526,41 @@
   <div class="background-animation" id="gridAnimation"></div>
   <div class="particles" id="particles"></div>
   
-  
-  
-  <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#ffffff" lcw-marquee-1="coins" lcw-marquee-2="none" lcw-marquee-items="20" ></div>
-
-  <div class="container">
-    <div class="sidebar">
-      <div class="logo">
-        <h2>FIXORIUM</h2>
-        <p>DECENTRALIZED ECOSYSTEM</p>
-      </div>
-      <div class="sidebar-buttons">
-        <button class="active" onclick="showSection('home')">
+  <header>
+    <div class="logo">
+      <h2>FIXORIUM</h2>
+      <p>DECENTRALIZED ECOSYSTEM</p>
+    </div>
+    
+    <!-- Dropdown menu -->
+    <div class="dropdown-container">
+      <button class="dropdown-button" onclick="toggleDropdown()">
+        <i class="fas fa-bars"></i> MENU
+      </button>
+      <div class="dropdown-content" id="dropdownMenu">
+        <a href="#" class="active" onclick="showSection('home')">
           <i class="fas fa-home"></i> HOME
-        </button>
-        <button onclick="showSection('tokens')">
+        </a>
+        <a href="#" onclick="showSection('tokens')">
           <i class="fas fa-coins"></i> TOKENS
-        </button>
-        <button onclick="showSection('wallet')">
+        </a>
+        <a href="#" onclick="showSection('wallet')">
           <i class="fas fa-wallet"></i> WALLET
-        </button>
-        <button onclick="showSection('whitepaper')">
+        </a>
+        <a href="#" onclick="showSection('whitepaper')">
           <i class="fas fa-file-contract"></i> WHITEPAPER
-        </button>
-        <button onclick="showSection('team')">
+        </a>
+        <a href="#" onclick="showSection('team')">
           <i class="fas fa-users"></i> TEAM
-        </button>
+        </a>
       </div>
     </div>
+  </header>
+  
+  <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> 
+  <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#ffffff" lcw-marquee-1="coins" lcw-marquee-2="none" lcw-marquee-items="20" ></div>
 
+  <div class="container">
     <div class="content">
       <!-- HOME -->
       <div id="home" class="section active">
@@ -744,14 +734,33 @@
     // Section navigation
     function showSection(id) {
       const sections = document.querySelectorAll('.section');
-      const buttons = document.querySelectorAll('.sidebar button');
+      const menuItems = document.querySelectorAll('.dropdown-content a');
       
       sections.forEach(sec => sec.classList.remove('active'));
-      buttons.forEach(btn => btn.classList.remove('active'));
+      menuItems.forEach(item => item.classList.remove('active'));
       
       document.getElementById(id).classList.add('active');
       event.currentTarget.classList.add('active');
+      
+      // Close dropdown after selection
+      document.getElementById('dropdownMenu').classList.remove('show');
     }
+    
+    // Toggle dropdown menu
+    function toggleDropdown() {
+      const dropdown = document.getElementById('dropdownMenu');
+      dropdown.classList.toggle('show');
+    }
+    
+    // Close dropdown when clicking outside
+    window.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('dropdownMenu');
+      const dropdownButton = document.querySelector('.dropdown-button');
+      
+      if (!dropdownButton.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
     
     // Create animated grid background
     function createGrid() {
@@ -830,12 +839,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
