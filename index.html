@@ -524,8 +524,18 @@
     </a>
   </div>
   
-  <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> 
-  <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#ffffff" lcw-marquee-1="coins" lcw-marquee-2="none" lcw-marquee-items="20" ></div>
+ <div id="cr-widget-marquee"
+        data-coins="bitcoin,ethereum,tether,ripple,cardano"
+        data-theme="dark"
+        data-show-symbol="false"
+        data-show-icon="true"
+        data-show-period-change="false"
+        data-period-change="24H"
+        data-api-url="https://api.cryptorank.io/v0"
+      >
+        <a href="https://cryptorank.io">Coins by Cryptorank</a>
+        <script src="https://cryptorank.io/widget/marquee.js"></script>
+    </div>
 
   <div class="content">
     <!-- HOME -->
@@ -820,3 +830,4 @@
   </script>
 </body>
 </html>
+
