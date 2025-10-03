@@ -63,40 +63,13 @@
       100% { transform: translateY(100%); }
     }
     
-    /* Top bar with logo and dropdown */
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      background: rgba(17, 17, 34, 0.8);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-      animation: headerGlow 3s ease-in-out infinite alternate;
-    }
-    
-    @keyframes headerGlow {
-      0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
-      100% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.6); }
-    }
-    
-    .logo h2 {
-      font-size: 24px;
-      color: #0ff;
-      text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-      letter-spacing: 3px;
-      margin-bottom: 5px;
-    }
-    
-    .logo p {
-      font-size: 10px;
-      color: rgba(255, 255, 255, 0.7);
-      letter-spacing: 1px;
-    }
-    
-    /* Dropdown menu styles */
+    /* Dropdown menu styles - Adjusted position */
     .dropdown-container {
-      position: relative;
+      position: fixed;
+      top: 20px;
+      right: 20px;
       display: inline-block;
+      z-index: 1000;
     }
     
     .dropdown-button {
@@ -440,17 +413,12 @@
     
     /* Responsive design */
     @media (max-width: 768px) {
-      .top-bar {
-        flex-direction: column;
-        gap: 15px;
-      }
-      
       .dropdown-container {
-        width: 100%;
+        width: auto;
       }
       
       .dropdown-button {
-        width: 100%;
+        width: auto;
         justify-content: center;
       }
       
@@ -511,35 +479,27 @@
   <div class="background-animation" id="gridAnimation"></div>
   <div class="particles" id="particles"></div>
   
-  <!-- Top bar with logo and dropdown menu -->
-  <div class="top-bar">
-    <div class="logo">
-      <h2>FIXORIUM</h2>
-      <p> GO BEYOND THE MIND</p>
-    </div>
-    
-    <!-- Dropdown menu -->
-    <div class="dropdown-container">
-      <button class="dropdown-button" onclick="toggleDropdown()">
-        <i class="fas fa-bars"></i> MENU
-      </button>
-      <div class="dropdown-content" id="dropdownMenu">
-        <a href="#" class="active" onclick="showSection('home')">
-          <i class="fas fa-home"></i> HOME
-        </a>
-        <a href="#" onclick="showSection('tokens')">
-          <i class="fas fa-coins"></i> TOKENS
-        </a>
-        <a href="#" onclick="showSection('wallet')">
-          <i class="fas fa-wallet"></i> WALLET
-        </a>
-        <a href="#" onclick="showSection('whitepaper')">
-          <i class="fas fa-file-contract"></i> WHITEPAPER
-        </a>
-        <a href="#" onclick="showSection('team')">
-          <i class="fas fa-users"></i> TEAM
-        </a>
-      </div>
+  <!-- Dropdown menu - now positioned at top right -->
+  <div class="dropdown-container">
+    <button class="dropdown-button" onclick="toggleDropdown()">
+      <i class="fas fa-bars"></i> MENU
+    </button>
+    <div class="dropdown-content" id="dropdownMenu">
+      <a href="#" class="active" onclick="showSection('home')">
+        <i class="fas fa-home"></i> HOME
+      </a>
+      <a href="#" onclick="showSection('tokens')">
+        <i class="fas fa-coins"></i> TOKENS
+      </a>
+      <a href="#" onclick="showSection('wallet')">
+        <i class="fas fa-wallet"></i> WALLET
+      </a>
+      <a href="#" onclick="showSection('whitepaper')">
+        <i class="fas fa-file-contract"></i> WHITEPAPER
+      </a>
+      <a href="#" onclick="showSection('team')">
+        <i class="fas fa-users"></i> TEAM
+      </a>
     </div>
   </div>
   
@@ -823,14 +783,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
