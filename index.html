@@ -23,6 +23,7 @@
       overflow-x: hidden;
       background: radial-gradient(circle at center, #0a0a2a 0%, #000 70%);
       min-height: 100vh;
+      padding-bottom: 70px; /* Space for fixed bottom menu */
     }
     
     /* Animated background */
@@ -63,77 +64,48 @@
       100% { transform: translateY(100%); }
     }
     
-    /* Dropdown menu styles - Adjusted position */
-    .dropdown-container {
+    /* Fixed bottom menu bar */
+    .bottom-menu {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      display: inline-block;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(17, 17, 34, 0.95);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      border-top: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
       z-index: 1000;
     }
     
-    .dropdown-button {
-      background: rgba(34, 34, 51, 0.8);
-      color: #fff;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      letter-spacing: 1px;
+    .menu-item {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-    }
-    
-    .dropdown-button:hover {
-      background: rgba(0, 255, 255, 0.2);
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-    }
-    
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      right: 0;
-      top: 100%;
-      background: rgba(17, 17, 34, 0.95);
-      min-width: 200px;
-      border-radius: 8px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-      z-index: 100;
-      overflow: hidden;
-      border: 1px solid rgba(0, 255, 255, 0.3);
-    }
-    
-    .dropdown-content.show {
-      display: block;
-    }
-    
-    .dropdown-content a {
-      color: #fff;
-      padding: 15px 20px;
+      color: rgba(255, 255, 255, 0.7);
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 6px;
       transition: all 0.3s ease;
-      border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+      flex: 1;
+      max-width: 80px;
     }
     
-    .dropdown-content a:last-child {
-      border-bottom: none;
+    .menu-item i {
+      font-size: 18px;
+      margin-bottom: 4px;
     }
     
-    .dropdown-content a:hover {
-      background: rgba(0, 255, 255, 0.2);
-      padding-left: 25px;
+    .menu-item span {
+      font-size: 10px;
+      text-align: center;
     }
     
-    .dropdown-content a.active {
-      background: #0ff;
-      color: #000;
-      font-weight: bold;
+    .menu-item.active, .menu-item:hover {
+      color: #0ff;
+      background: rgba(0, 255, 255, 0.1);
     }
     
     /* Marquee styles */
@@ -324,6 +296,43 @@
       font-size: 24px;
     }
     
+    /* Mint address styles */
+    .mint-address {
+      display: flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin: 10px 0;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+    }
+    
+    .mint-text {
+      flex: 1;
+      font-family: monospace;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.8);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .copy-btn {
+      background: rgba(0, 255, 255, 0.1);
+      color: #0ff;
+      border: 1px solid #0ff;
+      border-radius: 4px;
+      padding: 6px 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+    
+    .copy-btn:hover {
+      background: #0ff;
+      color: #000;
+    }
+    
     /* Team cards */
     .team-grid {
       display: grid;
@@ -413,27 +422,39 @@
     
     /* Responsive design */
     @media (max-width: 768px) {
-      .dropdown-container {
-        width: auto;
-      }
-      
-      .dropdown-button {
-        width: auto;
-        justify-content: center;
-      }
-      
-      .dropdown-content {
-        width: 100%;
-        right: auto;
-        left: 0;
-      }
-      
       .content {
         padding: 20px;
       }
       
       .token-cards, .team-grid {
         grid-template-columns: 1fr;
+      }
+      
+      .bottom-menu {
+        padding: 8px 0;
+      }
+      
+      .menu-item {
+        padding: 6px 8px;
+        max-width: 70px;
+      }
+      
+      .menu-item i {
+        font-size: 16px;
+      }
+      
+      .menu-item span {
+        font-size: 9px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .menu-item span {
+        font-size: 8px;
+      }
+      
+      .mint-text {
+        font-size: 10px;
       }
     }
     
@@ -479,28 +500,28 @@
   <div class="background-animation" id="gridAnimation"></div>
   <div class="particles" id="particles"></div>
   
-  <!-- Dropdown menu - now positioned at top right -->
-  <div class="dropdown-container">
-    <button class="dropdown-button" onclick="toggleDropdown()">
-      <i class="fas fa-bars"></i> MENU
-    </button>
-    <div class="dropdown-content" id="dropdownMenu">
-      <a href="#" class="active" onclick="showSection('home')">
-        <i class="fas fa-home"></i> HOME
-      </a>
-      <a href="#" onclick="showSection('tokens')">
-        <i class="fas fa-coins"></i> TOKENS
-      </a>
-      <a href="#" onclick="showSection('wallet')">
-        <i class="fas fa-wallet"></i> WALLET
-      </a>
-      <a href="#" onclick="showSection('whitepaper')">
-        <i class="fas fa-file-contract"></i> WHITEPAPER
-      </a>
-      <a href="#" onclick="showSection('team')">
-        <i class="fas fa-users"></i> TEAM
-      </a>
-    </div>
+  <!-- Fixed bottom menu bar -->
+  <div class="bottom-menu">
+    <a href="#" class="menu-item active" onclick="showSection('home')">
+      <i class="fas fa-home"></i>
+      <span>HOME</span>
+    </a>
+    <a href="#" class="menu-item" onclick="showSection('tokens')">
+      <i class="fas fa-coins"></i>
+      <span>TOKENS</span>
+    </a>
+    <a href="#" class="menu-item" onclick="showSection('wallet')">
+      <i class="fas fa-wallet"></i>
+      <span>WALLET</span>
+    </a>
+    <a href="#" class="menu-item" onclick="showSection('whitepaper')">
+      <i class="fas fa-file-contract"></i>
+      <span>WHITEPAPER</span>
+    </a>
+    <a href="#" class="menu-item" onclick="showSection('team')">
+      <i class="fas fa-users"></i>
+      <span>TEAM</span>
+    </a>
   </div>
   
   <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> 
@@ -536,14 +557,12 @@
 
     <!-- TOKENS -->
     <div id="tokens" class="section">
-     
           <center>  <img src="main.png" alt="Descriptive text" height="300" width="300" /></center>
 
+      <h2>LISTED TOKENS</h2>
       
       <p> FIXERCOIN : FIXERCOIN IS THE CORE TOKEN OF THE FIXORIUM ECOSYSTEM, DESIGNED FOR TRADING, STAKING, AND GOVERNANCE. IT ENABLES USERS TO PARTICIPATE IN CROSS-CHAIN UTILITIES WITH LOW FEES AND HIGH SPEED.</p>
-    
       
-
       <p>LOCKER : LOCKER TOKEN IS A UTILITY DESIGNED TO SECURELY LOCK DIGITAL ASSETS. IT BUILDS TRUST IN PROJECTS AND ENSURES FUNDS ARE SAFEGUARDED FOR INVESTORS, MAKING IT A KEY FEATURE OF OUR ECOSYSTEM.</p>
        
       <div class="token-cards">
@@ -551,8 +570,14 @@
           <h3><i class="fas fa-coins"></i> FIXERCOIN </h3>
           <p><strong>Symbol:</strong> FIXERCOIN</p>
           <p><strong>Total Supply:</strong> 100,000,0000</p>
-          <p><strong>Blockchain:</strong> solana</p
-         <p><strong>MINT:</strong> H4qKn8FMFha8jJuj8xMryMqRhH3h7GjLuxw7TVixpump</p>                                         
+          <p><strong>Blockchain:</strong> solana</p>
+          
+          <!-- Fixercoin Mint Address with Copy Option -->
+          <div class="mint-address">
+            <div class="mint-text">H4qKn8FMFha8jJuj8xMryMqRhH3h7GjLuxw7TVixpump</div>
+            <button class="copy-btn" onclick="copyToClipboard('H4qKn8FMFha8jJuj8xMryMqRhH3h7GjLuxw7TVixpump')">COPY</button>
+          </div>
+                                         
           <p><strong>Use Cases:</strong> Payments, Staking, Governance</p>
         </div>
         <div class="token-card">
@@ -560,7 +585,12 @@
           <p><strong>Symbol:</strong> LOCKER</p>
           <p><strong>Total Supply:</strong> 100,000,0000</p>
           <p><strong>Blockchain:</strong> Solana</p>
-         <p><strong>MINT:</strong> EN1nYrW6375zMPUkpkGyGSEXW8WmAqYu4yhf6xnGpump</p>
+          
+          <!-- Locker Mint Address with Copy Option -->
+          <div class="mint-address">
+            <div class="mint-text">EN1nYrW6375zMPUkpkGyGSEXW8WmAqYu4yhf6xnGpump</div>
+            <button class="copy-btn" onclick="copyToClipboard('EN1nYrW6375zMPUkpkGyGSEXW8WmAqYu4yhf6xnGpump')">COPY</button>
+          </div>
           
           <p><strong>Use Cases:</strong> Asset Locking, Trust Building</p>
         </div>
@@ -571,6 +601,7 @@
     <div id="wallet" class="section">
             <center>  <img src="main.png" alt="Descriptive text" height="300" width="300" /></center>
 
+      <h2>FIXORIUM WALLET</h2>
       <p>THE FIXORIUM WALLET PROVIDES SECURE STORAGE AND MANAGEMENT OF DIGITAL ASSETS. WITH MULTI-CHAIN SUPPORT AND AN EASY-TO-USE INTERFACE, USERS CAN SAFELY HOLD, SEND, AND RECEIVE TOKENS.</p>
       
       <div class="token-cards">
@@ -588,7 +619,6 @@
         </div>
       </div>
      
-   
       <p><a href="https://files.appsgeyser.com/FIXORIUM_19160838.apk" class="download"><i class="fas fa-download"></i> DOWNLOAD FIXORIUM WALLET</a></p>
     </div>
 
@@ -596,6 +626,7 @@
     <div id="whitepaper" class="section">
             <center>  <img src="main.png" alt="Descriptive text" height="300" width="300" /></center>
 
+      <h2>WHITEPAPER</h2>
       <p>DOWNLOAD THE FULL FIXORIUM WHITEPAPER TO LEARN MORE ABOUT OUR VISION, TOKENOMICS, AND ROADMAP.</p>
       
       <div class="token-cards">
@@ -624,6 +655,7 @@
     <div id="team" class="section">
            <center>  <img src="main.png" alt="Descriptive text" height="300" width="300" /></center>
 
+      <h2>OUR TEAM</h2>
       <p>MEET THE DEDICATED PROFESSIONALS BEHIND THE FIXORIUM ECOSYSTEM, BRINGING TOGETHER DECADES OF EXPERIENCE IN BLOCKCHAIN TECHNOLOGY, FINANCE, AND SOFTWARE DEVELOPMENT.</p>
       
       <div class="team-grid">
@@ -682,33 +714,34 @@
     // Section navigation
     function showSection(id) {
       const sections = document.querySelectorAll('.section');
-      const menuItems = document.querySelectorAll('.dropdown-content a');
+      const menuItems = document.querySelectorAll('.menu-item');
       
       sections.forEach(sec => sec.classList.remove('active'));
       menuItems.forEach(item => item.classList.remove('active'));
       
       document.getElementById(id).classList.add('active');
       event.currentTarget.classList.add('active');
-      
-      // Close dropdown after selection
-      document.getElementById('dropdownMenu').classList.remove('show');
     }
     
-    // Toggle dropdown menu
-    function toggleDropdown() {
-      const dropdown = document.getElementById('dropdownMenu');
-      dropdown.classList.toggle('show');
+    // Copy to clipboard function
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(function() {
+        // Change button text temporarily to indicate success
+        const button = event.target;
+        const originalText = button.textContent;
+        button.textContent = 'COPIED!';
+        button.style.background = '#0ff';
+        button.style.color = '#000';
+        
+        setTimeout(function() {
+          button.textContent = originalText;
+          button.style.background = 'rgba(0, 255, 255, 0.1)';
+          button.style.color = '#0ff';
+        }, 2000);
+      }, function(err) {
+        console.error('Could not copy text: ', err);
+      });
     }
-    
-    // Close dropdown when clicking outside
-    window.addEventListener('click', function(event) {
-      const dropdown = document.getElementById('dropdownMenu');
-      const dropdownButton = document.querySelector('.dropdown-button');
-      
-      if (!dropdownButton.contains(event.target) && !dropdown.contains(event.target)) {
-        dropdown.classList.remove('show');
-      }
-    });
     
     // Create animated grid background
     function createGrid() {
@@ -787,4 +820,3 @@
   </script>
 </body>
 </html>
-
