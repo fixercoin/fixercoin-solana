@@ -21,12 +21,13 @@
       font-size: 12px;
       text-transform: uppercase;
       overflow-x: hidden;
-      background: radial-gradient(circle at center, #0a0a2a 0%, #000 70%);
+      background: linear-gradient(135deg, #0a0a2a 0%, #000000 50%, #0a2a1a 100%);
       min-height: 100vh;
-      padding-bottom: 70px; /* Space for fixed bottom menu */
+      padding-top: 70px; /* Space for fixed top menu */
+      padding-bottom: 20px;
     }
     
-    /* Animated background */
+    /* Crypto-themed background */
     .background-animation {
       position: fixed;
       top: 0;
@@ -35,6 +36,10 @@
       height: 100%;
       z-index: -1;
       opacity: 0.3;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 80% 70%, rgba(0, 255, 0, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 40% 80%, rgba(255, 255, 0, 0.1) 0%, transparent 20%);
     }
     
     .grid-line {
@@ -64,10 +69,10 @@
       100% { transform: translateY(100%); }
     }
     
-    /* Fixed bottom menu bar */
-    .bottom-menu {
+    /* Fixed top menu bar */
+    .top-menu {
       position: fixed;
-      bottom: 0;
+      top: 0;
       left: 0;
       width: 100%;
       background: rgba(17, 17, 34, 0.95);
@@ -75,8 +80,8 @@
       justify-content: space-around;
       align-items: center;
       padding: 10px 0;
-      border-top: 1px solid rgba(0, 255, 255, 0.3);
-      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
       z-index: 1000;
     }
     
@@ -440,7 +445,7 @@
         grid-template-columns: 1fr;
       }
       
-      .bottom-menu {
+      .top-menu {
         padding: 8px 0;
       }
       
@@ -506,46 +511,37 @@
   </style>
 </head>
 <body>
-  <!-- Animated background -->
-  <div class="background-animation" id="gridAnimation"></div>
-  <div class="particles" id="particles"></div>
-  
-  <!-- Fixed bottom menu bar -->
-  <div class="bottom-menu">
+  <!-- Fixed top menu bar -->
+  <div class="top-menu">
     <a href="#" class="menu-item active" onclick="showSection('home')">
-   
       <span>HOME</span>
     </a>
     <a href="#" class="menu-item" onclick="showSection('tokens')">
-      
       <span>TOKENS</span>
     </a>
     <a href="#" class="menu-item" onclick="showSection('wallet')">
-     
       <span>WALLET</span>
     </a>
     <a href="#" class="menu-item" onclick="showSection('whitepaper')">
-    
       <span>WHITEPAPER</span>
     </a>
     <a href="#" class="menu-item" onclick="showSection('team')">
-     
       <span>TEAM</span>
     </a>
   </div>
   
-
+  <!-- Animated background -->
+  <div class="background-animation" id="gridAnimation"></div>
+  <div class="particles" id="particles"></div>
+  
   <!-- CoinMarketCap Marquee Widget -->
   <div id="coinmarketcap-widget-marquee" coins="1,1027,825,5426,74,6636" currency="USD" theme="light" transparent="false" show-symbol-logo="true"></div>
   <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
 
-
   <div class="content">
     <!-- HOME -->
     <div id="home" class="section active">
-      
-
-<p></p>      
+      <p></p>      
       <ul>
         <li>FIXORIUM IS A NEXT-GENERATION DECENTRALIZED ECOSYSTEM</li>
         <li>BUILT TO EMPOWER USERS WITH SECURE WALLETS</li>
@@ -569,7 +565,7 @@
 
     <!-- TOKENS -->
     <div id="tokens" class="section">
-          <center>  <img src="token-img.png" alt="Descriptive text" height="300" width="300" /></center>
+      <center>  <img src="token-img.png" alt="Descriptive text" height="300" width="300" /></center>
 
       <h2>LISTED TOKENS</h2>
       
@@ -611,7 +607,7 @@
 
     <!-- WALLET -->
     <div id="wallet" class="section">
-            <center>  <img src="wallet-img.png" alt="Descriptive text" height="300" width="300" /></center>
+      <center>  <img src="wallet-img.png" alt="Descriptive text" height="300" width="300" /></center>
 
       <h2>FIXORIUM WALLET</h2>
       <p>THE FIXORIUM WALLET PROVIDES SECURE STORAGE AND MANAGEMENT OF DIGITAL ASSETS. WITH MULTI-CHAIN SUPPORT AND AN EASY-TO-USE INTERFACE, USERS CAN SAFELY HOLD, SEND, AND RECEIVE TOKENS.</p>
@@ -636,7 +632,7 @@
 
     <!-- WHITEPAPER -->
     <div id="whitepaper" class="section">
-            <center>  <img src="main.png" alt="Descriptive text" height="300" width="300" /></center>
+      <center>  <img src="main.png" alt="Descriptive text" height="300" width="300" /></center>
 
       <h2>WHITEPAPER</h2>
       <p>DOWNLOAD THE FULL FIXORIUM WHITEPAPER TO LEARN MORE ABOUT OUR VISION, TOKENOMICS, AND ROADMAP.</p>
@@ -665,7 +661,7 @@
 
     <!-- TEAM -->
     <div id="team" class="section">
-           <center>  <img src="main.png" alt="Descriptive text" height="300" width="300" /></center>
+      <center>  <img src="main.png" alt="Descriptive text" height="300" width="300" /></center>
 
       <h2>OUR TEAM</h2>
       <p>MEET THE DEDICATED PROFESSIONALS BEHIND THE FIXORIUM ECOSYSTEM, BRINGING TOGETHER DECADES OF EXPERIENCE IN BLOCKCHAIN TECHNOLOGY, FINANCE, AND SOFTWARE DEVELOPMENT.</p>
@@ -832,11 +828,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
